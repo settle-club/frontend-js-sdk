@@ -77,7 +77,7 @@ Create a button to open the iframe and handle transactions:
         document.getElementById('openIframeButton').onclick = function() {
             Settle.open(
                 "https://www.settle.club",
-                function onSuccess() {
+                function onSuccess(transaction) {
                     console.log("Transaction Successful!");
                 },
                 function onFailure(error) {
