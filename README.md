@@ -74,17 +74,17 @@ Create a button to open the iframe and handle transactions:
     <button id="openIframeButton">Open Iframe</button>
 
     <script>
-        document.getElementById('openIframeButton').onclick = function() {
-            Settle.open(
-                "https://www.settle.club",
-                function onSuccess(transaction) {
-                    console.log("Transaction Successful!");
-                },
-                function onFailure(error) {
-                    console.error("Transaction Failed:", error);
-                }
-            );
-        };
+      document.getElementById("openIframeButton").onclick = function () {
+        Settle.open(
+          "https://www.settle.club",
+          function onSuccess(transaction) {
+            console.log("Transaction Successful!");
+          },
+          function onFailure(error) {
+            console.error("Transaction Failed:", error);
+          }
+        );
+      };
     </script>
   </body>
 </html>
@@ -118,11 +118,9 @@ export default function Home() {
   };
 
   return (
-    window && (
-      <main className={styles.main}>
-        <button onClick={openIframe}>Open Iframe</button>
-      </main>
-    )
+    <main className={styles.main}>
+      <button onClick={openIframe}>Open Iframe</button>
+    </main>
   );
 }
 ```
