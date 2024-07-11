@@ -6,8 +6,8 @@ The Settle SDK allows merchants to integrate a seamless iframe popup into their 
 
 - [Installation](#installation)
 - [API Reference](#api-reference)
-  - [`SettleSdk.openIframe`](#settlesdkopeniframe)
-  - [`SettleSdk.closeIframe`](#settlesdkcloseiframe)
+  - [`Settle.open`](#settleopen)
+  - [`Settle.close`](#settleclose)
 - [Usage Example](#usage-example)
 - [Styling](#styling)
 
@@ -21,7 +21,7 @@ npm install git+https://github.com/settle-club/frontend-js-sdk.git
 
 ## API Reference
 
-### `SettleSdk.openIframe`
+### `Settle.open`
 
 Opens an iframe popup with the specified URL and monitors for success or failure messages.
 
@@ -34,9 +34,9 @@ Opens an iframe popup with the specified URL and monitors for success or failure
 #### Example:
 
 ```javascript
-SettleSdk.openIframe(
+Settle.open(
     "https://www.settle.club",
-    function onSuccess() {
+    function onSuccess(transaction) {
         console.log("Transaction Successful!");
     },
     function onFailure(error) {
@@ -45,14 +45,14 @@ SettleSdk.openIframe(
 );
 ```
 
-### `SettleSdk.closeIframe`
+### `Settle.close`
 
 Closes the iframe popup if it is open.
 
 #### Example:
 
 ```javascript
-SettleSdk.closeIframe();
+Settle.close();
 ```
 
 ## Usage Example
@@ -75,7 +75,7 @@ Create a button to open the iframe and handle transactions:
 
     <script>
         document.getElementById('openIframeButton').onclick = function() {
-            SettleSdk.openIframe(
+            Settle.open(
                 "https://www.settle.club",
                 function onSuccess() {
                     console.log("Transaction Successful!");

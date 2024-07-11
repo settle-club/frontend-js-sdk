@@ -25,7 +25,7 @@
         return modal;
     }
 
-    function openIframe(url, onSuccess, onFailure) {
+    function open(url, onSuccess, onFailure) {
         const modal = document.getElementById('sdk-modal') || createModal();
         const iframe = document.getElementById('sdk-iframe');
         const loader = document.getElementById('sdk-loader');
@@ -49,11 +49,11 @@
             console.log(message);
             if (message.type === 'success') {
                 onSuccess();
-                closeIframe();
+                close();
                 window.removeEventListener('message', handleMessage);
             } else if (message.type === 'failure') {
                 onFailure(message.error);
-                closeIframe();
+                close();
                 window.removeEventListener('message', handleMessage);
             }
         }
@@ -61,7 +61,7 @@
         window.addEventListener('message', handleMessage);
     }
 
-    function closeIframe() {
+    function close() {
         const modal = document.getElementById('sdk-modal');
         const iframe = document.getElementById('sdk-iframe');
         if (modal && iframe) {
@@ -70,16 +70,16 @@
         }
     }
 
-    global.SettleSdk = {
-        openIframe: openIframe,
-        closeIframe: closeIframe
+    global.Settle = {
+        open: open,
+        close: close
     };
 
     // If using module.exports or ES6 export
     if (typeof module !== 'undefined' && module.exports) {
-        module.exports = global.SettleSdk;
+        module.exports = global.Settle;
     } else if (typeof define === 'function' && define.amd) {
-        define(function() { return global.SettleSdk; });
+        define(function() { return global.Settle; });
     }
 
     const style = document.createElement('style');
