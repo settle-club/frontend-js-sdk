@@ -26,12 +26,19 @@
     }
 
     function open(url, onSuccess, onFailure) {
+        if (!url.includes('potleex0.de') && !url.includes('settle.club')) {
+            onFailure('Invalid URL');
+            return;
+        }
+
         const modal = document.getElementById('sdk-modal') || createModal();
         const iframe = document.getElementById('sdk-iframe');
         const loader = document.getElementById('sdk-loader');
 
         modal.style.display = 'flex';
         loader.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        
         iframe.style.display = 'none';
         iframe.src = url;
 
@@ -41,9 +48,9 @@
         };
 
         function handleMessage(event) {
-            if (event.origin !== new URL(url).origin) {
-                return;
-            }
+            // if (event.origin !== new URL(url).origin) {
+            //     return;
+            // }
             
             const message = event.data;
             console.log(message);
@@ -66,6 +73,7 @@
         const iframe = document.getElementById('sdk-iframe');
         if (modal && iframe) {
             modal.style.display = 'none';
+            document.body.style.overflow = '';
             iframe.src = "";
         }
     }
