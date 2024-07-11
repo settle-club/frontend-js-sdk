@@ -1,6 +1,6 @@
-# Settle SDK
+# Settle Frontend SDK
 
-The Settle SDK allows merchants to integrate a seamless iframe popup into their websites for handling transactions. The SDK provides functions to open and close the iframe and supports callbacks for success and failure scenarios, including error handling.
+The Settle Frontend SDK allows merchants to integrate a seamless popup into their websites for handling transactions. The SDK provides functions to open and close the checckout popup and supports callbacks for success and failure scenarios, including error handling.
 
 ## Table of Contents
 
