@@ -6,8 +6,8 @@ The Settle Frontend SDK allows merchants to integrate a seamless popup into thei
 
 - [Installation](#installation)
 - [API Reference](#api-reference)
-  - [`Settle.open`](#settleopen)
-  - [`Settle.close`](#settleclose)
+  - [Settle.open](#settleopen)
+  - [Settle.close](#settleclose)
 - [Usage Example](#usage-example)
 - [Styling](#styling)
 
