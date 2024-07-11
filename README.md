@@ -19,15 +19,6 @@ The Settle SDK allows merchants to integrate a seamless iframe popup into their 
    npm install git+https://github.com/settle-club/frontend-js-sdk.git
    ```
 
-### Usage In Next App
-
-1. Add `"use client"` at the top.
-
-2. Import the package into your application.
-   ```bash
-   import "frontend-js-sdk";
-   ```
-
 ## API Reference
 
 ### `Settle.open`
@@ -99,7 +90,13 @@ Create a button to open the iframe and handle transactions:
 </html>
 ```
 
-### Next App
+### Next.js Application
+
+1. Add "use client" at the top of your component file.
+
+2. Import the package into your application.
+
+3. Implement the button and callback functions.
 
 ```javascript
 "use client";
