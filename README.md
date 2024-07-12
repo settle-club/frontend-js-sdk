@@ -44,6 +44,24 @@ Settle.open(
 );
 ```
 
+#### Types of passed arguments into callback
+
+```javascript
+interface SDKResponse {
+    status: 'SUCCESS' | 'FAILED' | 'CANCELLED';
+    order: {
+        valueInPaise?: number;
+        uid?: string;
+    };
+    customer: {
+        mobile?: string;
+        countryCode?: string;
+        uid?: string;
+    };
+    transactionId: string | null;
+}
+```
+
 ### `Settle.close`
 
 Closes the iframe popup if it is open.
