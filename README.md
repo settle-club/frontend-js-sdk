@@ -44,7 +44,7 @@ Settle.open(
 );
 ```
 
-#### Types of passed arguments into callback
+#### Schema of `transaction` will be
 
 ```javascript
 {
