@@ -44,6 +44,73 @@ Settle.open(
 );
 ```
 
+#### Types of passed arguments into callback
+
+```javascript
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["SUCCESS", "FAILED", "CANCELLED"]
+    },
+    "order": {
+      "type": "object",
+      "properties": {
+        "valueInPaise": {
+          "type": "number"
+        },
+        "uid": {
+          "type": "string"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "customer": {
+      "type": "object",
+      "properties": {
+        "mobile": {
+          "type": "string"
+        },
+        "countryCode": {
+          "type": "string"
+        },
+        "uid": {
+          "type": "string"
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "transactionId": {
+      "type": ["string", "null"]
+    }
+  },
+  "required": ["status", "order", "customer", "transactionId"]
+}
+```
+
+##### API Response Fields Documentation
+
+| Field          | Type            | Description                                                             |
+|----------------|-----------------|-------------------------------------------------------------------------|
+| `status`       | `string`        | The status of the transaction. Possible values are: `SUCCESS`, `FAILED`, `CANCELLED`. |
+| `order`        | `object`        | Details of the order. Can be an empty object for  `FAILED`, `CANCELLED`.                           |
+| `order.valueInPaise` | `number`  | The total value of the order in paise. Optional field.                  |
+| `order.uid`    | `string`        | The unique identifier for the order. Optional field.                    |
+| `customer`     | `object`        | Details of the customer. Can be an empty object for  `FAILED`, `CANCELLED`.                         |
+| `customer.mobile`      | `string` | The mobile number of the customer. Optional field.                      |
+| `customer.countryCode` | `string` | The country code of the customer's mobile number. Optional field.       |
+| `customer.uid`         | `string` | The unique identifier for the customer. Optional field.                 |
+| `transactionId`        | `string \ null` | The unique identifier for the transaction. Can be null.           |
+
+
+
+
+------------
+
 ### `Settle.close`
 
 Closes the iframe popup if it is open.
