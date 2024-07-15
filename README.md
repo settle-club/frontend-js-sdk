@@ -44,7 +44,7 @@ Settle.open(
 );
 ```
 
-#### Schema of `transaction` will be
+#### Schema of `transaction` is
 
 ```javascript
 {
@@ -90,7 +90,7 @@ Settle.open(
 }
 ```
 
-##### API Response Fields Documentation
+##### Description of `transaction` schema is
 
 | Field          | Type            | Description                                                             |
 |----------------|-----------------|-------------------------------------------------------------------------|
