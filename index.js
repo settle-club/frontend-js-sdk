@@ -50,33 +50,32 @@
     function handleMessage(event) {
       const message = event.data;
       console.log(message);
-      const { type, transaction, error } = message;
+      const { type, transaction } = message;
       if (type === "success") {
         onSuccess(transaction);
         close();
         window.removeEventListener("message", handleMessage);
       } else if (type === "failure") {
-        onFailure(error);
+        onFailure(transaction);
         close();
-        window.removeEventListener("message", handleMessage);
       }
     }
 
     window.addEventListener("message", handleMessage);
 
     function close() {
-        const modal = document.getElementById("sdk-modal");
-        const iframe = document.getElementById("sdk-iframe");
-        if (modal && iframe) {
-          modal.style.display = "none";
-          document.body.style.overflow = "";
-          iframe.src = "";
-        }
-        window.removeEventListener("message", handleMessage);
-        console.log("iframe closed");
+      const modal = document.getElementById("sdk-modal");
+      const iframe = document.getElementById("sdk-iframe");
+      if (modal && iframe) {
+        modal.style.display = "none";
+        document.body.style.overflow = "";
+        iframe.src = "";
       }
-  
-      global.Settle.close = close;
+      window.removeEventListener("message", handleMessage);
+      console.log("iframe closed");
+    }
+
+    global.Settle.close = close;
   }
 
   global.Settle = {
