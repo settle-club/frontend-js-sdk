@@ -65,8 +65,7 @@ Settle.open(
           "type": "string"
         }
       },
-      "required": [],
-      "additionalProperties": false
+      "required": ["valueInPaise", "uid"],
     },
     "customer": {
       "type": "object",
@@ -81,8 +80,7 @@ Settle.open(
           "type": "string"
         }
       },
-      "required": [],
-      "additionalProperties": false
+      "required": ["mobile", "countryCode"],
     },
     "transactionId": {
       "type": ["string", "null"]
