@@ -124,9 +124,10 @@
         border-radius: 15px;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         position: relative;
-        width: 80%;
+        width: 90%;
         height: 85%;
         max-width: 395px;
+        max-height: 750px;
         overflow: hidden;
         transition: all 0.5s ease-in-out;
     }
