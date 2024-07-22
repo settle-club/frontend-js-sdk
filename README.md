@@ -140,7 +140,7 @@ Create a button to open the iframe and handle transactions:
     <script>
       document.getElementById("openIframeButton").onclick = function () {
         Settle.open(
-          "<REDIRECT_URL obtained after calling Create Order>",
+          "<redirectUrl obtained after calling Create Order>",
           function onSuccess(transaction) {
             console.log("Transaction Successful!");
           },
@@ -171,7 +171,7 @@ import "frontend-js-sdk";
 export default function Home() {
   const openIframe = () => {
     Settle.open(
-      "<REDIRECT_URL obtained after calling Create Order>",
+      "<redirectUrl obtained after calling Create Order>",
       function onSuccess(transaction) {
         console.log("Transaction Successful!");
       },
