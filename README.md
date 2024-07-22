@@ -34,7 +34,7 @@ Opens an iframe popup with the specified URL and monitors for success or failure
 
 ```javascript
 Settle.open(
-  "<REDIRECT_URL obtained after calling Create Order>",
+  "<redirectUrl obtained after calling Create Order>",
   function onSuccess(transaction) {
     console.log("Transaction Successful!");
   },
