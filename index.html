@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./index.js"></script>
+</head>
+<body>
+    <button id="openIframeButton">Open Iframe</button>
+
+    <script>
+        const uat = 'https://account.uat.potleex0.de/'
+        const local = "https://local.uat.potleex0.de:3001/"
+        const path = "/onboarding/lenders-list?onboardingToken=5d3f2774-1e1c-489a-b712-e631afedc18a&lenderSlug=undefined&emiTenure=undefined&redirectUrl=https://www.google.com/"
+        const url = local + path
+        console.log({url});
+        document.getElementById('openIframeButton').onclick = function() {
+            Settle.open(
+                url,
+                function onSuccess(transaction) {
+                    console.log("Transaction Successful!");
+                },
+                function onFailure(error) {
+                    console.error("Transaction Failed:", error);
+                }
+            );
+        };
+    </script>
+</body>
+</html>
