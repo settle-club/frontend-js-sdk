@@ -87,7 +87,6 @@
         }, 500);
       }
       window.removeEventListener("message", handleMessage);
-      console.log("iframe closed");
     }
 
     global.Settle.close = close;
