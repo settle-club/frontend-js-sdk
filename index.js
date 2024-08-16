@@ -164,6 +164,13 @@
         visibility: hidden;
         opacity: 0;       
     }
+
+    @media (max-height: 650px) {
+        #sdk-modal-content {
+            transform: scale(0.8);
+            height: 110%;
+        }
+    }
     `;
   document.head.appendChild(style);
 })(window);
