@@ -1,30 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>URL Iframe Generator</title>
     <script src="./index.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <button id="openIframeButton">Open Iframe</button>
+    <div class="container">
+        <h2>URL Iframe Generator</h2>
+        <input type="text" id="domain" placeholder="Enter Domain" />
+        <input type="text" id="path" placeholder="Enter Path" />
+        <input type="text" id="fullUrl" placeholder="Enter Full URL" />
+        <button id="openIframeButton">Open Iframe</button>
+    </div>
 
     <script>
-        const uat = 'https://account.uat.potleex0.de/'
-        const local = "https://local.uat.potleex0.de:3001/"
-        const path = "/onboarding/lenders-list?onboardingToken=5d3f2774-1e1c-489a-b712-e631afedc18a&lenderSlug=undefined&emiTenure=undefined&redirectUrl=https://www.google.com/"
-        const url = local + path
-        console.log({url});
-        document.getElementById('openIframeButton').onclick = function() {
-            Settle.open(
-                url,
-                function onSuccess(transaction) {
-                    console.log("Transaction Successful!");
-                },
-                function onFailure(error) {
-                    console.error("Transaction Failed:", error);
-                }
-            );
+        document.getElementById("openIframeButton").onclick = function () {
+            const domain = document.getElementById("domain").value.trim();
+            const path = document.getElementById("path").value.trim();
+            const fullUrl = document.getElementById("fullUrl").value.trim();
+
+            let finalUrl;
+
+            // Use the full URL if provided
+            if (fullUrl) {
+                finalUrl = fullUrl;
+            } else if (domain && path) {
+                // Combine domain and path if both are provided
+                finalUrl = new URL(path, domain).href;
+            } else {
+                alert("Please provide a valid domain and/or path or a full URL.");
+                return;
+            }
+
+            // Open the iframe with the final URL
+            Settle.open(finalUrl, function onSuccess(transaction) {
+                console.log("Transaction Successful!");
+            }, function onFailure(error) {
+                console.error("Transaction Failed:", error);
+            });
         };
     </script>
 </body>
