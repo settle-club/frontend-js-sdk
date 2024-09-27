@@ -65,10 +65,13 @@
       if (type === "success") {
         onSuccess(transaction);
         close();
-        window.removeEventListener("message", handleMessage);
       } else if (type === "failure") {
         onFailure(transaction);
         close();
+      } else if (type === "close") {
+        close();
+      } else if (type === "reload") {
+        window.location.reload();
       }
     }
 
