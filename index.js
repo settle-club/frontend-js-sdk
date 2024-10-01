@@ -65,10 +65,13 @@
       if (type === "success") {
         onSuccess(transaction);
         close();
-        window.removeEventListener("message", handleMessage);
       } else if (type === "failure") {
         onFailure(transaction);
         close();
+      } else if (type === "close") {
+        close();
+      } else if (type === "reload") {
+        window.location.reload();
       }
     }
 
@@ -163,6 +166,13 @@
         border: none; 
         visibility: hidden;
         opacity: 0;       
+    }
+
+    @media (max-height: 650px) {
+        #sdk-modal-content {
+            transform: scale(0.8);
+            height: 110%;
+        }
     }
     `;
   document.head.appendChild(style);
