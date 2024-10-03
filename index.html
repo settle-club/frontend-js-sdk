@@ -8,7 +8,8 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            /* background-color: #f4f4f4; */
+            background-color: rgb(71, 71, 71);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -59,30 +60,59 @@
     </div>
 
     <script>
+        function populateFeildsFromQuery(){
+            const searchParams = new URLSearchParams(window.location.search);
+            const domain = searchParams.get('domain');
+            const path = searchParams.get('path');
+            const fullUrl = searchParams.get('fullUrl');
+            
+            document.getElementById("domain").value = domain;
+            document.getElementById("path").value = path;
+            document.getElementById("fullUrl").value = fullUrl;
+        }
+
+        populateFeildsFromQuery();
+
+        const updateSearchParam = (key, value) => {
+            const url = new URL(window.location.toString());
+            if(value) url.searchParams.set(key, value);
+            else url.searchParams.delete(key);
+            window.history.pushState({}, '', url);
+        };
+
+        document.getElementById("domain").onkeyup = function (event) {
+            updateSearchParam("domain", event.target.value)
+        }
+        document.getElementById("path").onkeyup = function (event) {
+            updateSearchParam("path", event.target.value)
+        }
+        document.getElementById("fullUrl").onkeyup = function (event) {
+            updateSearchParam("fullUrl", event.target.value)
+        }
+
         document.getElementById("openIframeButton").onclick = function () {
             const domain = document.getElementById("domain").value.trim();
             const path = document.getElementById("path").value.trim();
             const fullUrl = document.getElementById("fullUrl").value.trim();
 
             let finalUrl;
-
-            // Use the full URL if provided
             if (fullUrl) {
                 finalUrl = fullUrl;
+
             } else if (domain && path) {
-                // Combine domain and path if both are provided
-                finalUrl = new URL(path, domain).href;
+                finalUrl = domain + path
             } else {
                 alert("Please provide a valid domain and/or path or a full URL.");
                 return;
             }
-
+            
             // Open the iframe with the final URL
             Settle.open(finalUrl, function onSuccess(transaction) {
-                console.log("Transaction Successful!");
+                console.log("Journey Successful!");
+                console.log({data: transaction});
             }, function onFailure(error) {
                 console.error("Transaction Failed:", error);
-            });
+            })
         };
     </script>
 </body>
